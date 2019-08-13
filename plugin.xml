@@ -8,7 +8,7 @@
   <repo>https://github.com/totalpave/cordova-plugin-clock</repo>
 
   <js-module src="www/clock.js" name="Clock">
-    <clobbers target="cordova.plugins.clock" />
+    <clobbers target="totalpave.clock" />
   </js-module>
 
   <platform name="ios">
