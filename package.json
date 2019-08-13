@@ -1,0 +1,43 @@
+{
+  "author": {
+    "name": "TotalPave"
+  },
+  "bugs": {
+    "url": "https://github.com/totalpave/cordova-plugin-clock/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-clock",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova plugin to interface with TrueTime's Android and iOS NTP libaries.",
+  "engines": {
+    "cordovaDependencies": {
+      "0.0.0": {
+        "cordova-android": ">=8.0.0",
+        "cordova-ios": ">=4.5.1"
+      }
+    }
+  },
+  "homepage": "https://github.com/totalpave/cordova-plugin-clock",
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "ntp"
+  ],
+  "license": "Apache-2.0",
+  "name": "cordova-plugin-clock",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totalpave/cordova-plugin-clock.git"
+  },
+  "scripts": {
+    "test": "not implemented yet"
+  },
+  "version": "0.0.0"
+}
