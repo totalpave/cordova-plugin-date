@@ -17,12 +17,12 @@
  under the License.
  */
 
-#import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
+#import <Cordova/CDVInvokedUrlCommand.h>
 
 @interface CDVSplashScreen : CDVPlugin {
 }
 
-//- (void)show:(CDVInvokedUrlCommand*)command;
+- (void)test:(CDVInvokedUrlCommand*)command;
 
 @end

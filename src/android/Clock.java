@@ -27,11 +27,19 @@ import org.apache.cordova.LOG;
 public class Clock extends CordovaPlugin {
     private static final String LOG_TAG = "TotalPaveClock";
 
-    @Override
-    protected void pluginInitialize() {
-    }
+    // @Override
+    // protected void pluginInitialize() {
+    // }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        // cordova.getActivity().runOnUiThread(new Runnable() {
+
+        if (action.equals("test")) {
+            callbackContext.success("android");
+            return true;
+        }
+
+        return false;
     }
 }

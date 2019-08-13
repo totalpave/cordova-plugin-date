@@ -25,9 +25,9 @@
 {
 }
 
-// - (void)show:(CDVInvokedUrlCommand*)command
-// {
-//     [self setVisible:YES];
-// }
+- (void)test:(CDVInvokedUrlCommand*)command
+{
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ios"] callbackId: command.callbackId];
+}
 
 @end
