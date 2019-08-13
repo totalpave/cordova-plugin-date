@@ -1,19 +1,11 @@
 {
-  "author": {
-    "name": "Total Pave Inc."
-  },
+  "author": "Total Pave Inc.",
   "bugs": {
     "url": "https://github.com/totalpave/cordova-plugin-clock/issues"
   },
   "contributors": [
-    {
-      "name": "Tyler Breau",
-      "email": "tyler.breau@totalpave.com"
-    },
-    {
-      "name": "Norman Breau",
-      "email": "norman.breau@totalpave.com"
-    }
+    "Tyler Breau <tyler.breau@totalpave.com>",
+    "Norman Breau <norman.breau@totalpave.com>"
   ],
   "cordova": {
     "id": "cordova-plugin-clock",
@@ -49,5 +41,8 @@
   "scripts": {
     "test": "not implemented yet"
   },
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "directories": {
+    "test": "tests"
+  }
 }
