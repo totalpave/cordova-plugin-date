@@ -4,7 +4,7 @@
   <description>Cordova plugin to interface with TrueTime's Android and iOS NTP libaries.</description>
   <author>TotalPave</author>
   <license>Apache 2.0</license>
-  <keywords>cordova,ntp</keywords>
+  <keywords>cordova,cordova-ios,cordova-android,ntp</keywords>
   <repo>https://github.com/totalpave/cordova-plugin-clock</repo>
 
   <js-module src="www/clock.js" name="Clock">
