@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-clock" version="0.0.0">
+  <name>Clock</name>
+  <description>Cordova plugin to interface with TrueTime's Android and iOS NTP libaries.</description>
+  <author>TotalPave</author>
+  <license>Apache 2.0</license>
+  <keywords>cordova,ntp</keywords>
+  <repo>https://github.com/totalpave/cordova-plugin-clock</repo>
+
+  <js-module src="www/clock.js" name="Clock">
+    <clobbers target="cordova.plugins.clock" />
+  </js-module>
+
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="Clock">
+        <param name="ios-package" value="CDVClock"/>
+        <param name="onload" value="true"/>
+      </feature>
+    </config-file>
+    <header-file src="src/ios/CDVClock.h" />
+    <source-file src="src/ios/CDVClock.m" />
+  </platform>
+
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Clock">
+        <param name="android-package" value="org.apache.cordova.clock.Clock"/>
+        <param name="onload" value="true"/>
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/SplashScreen.java" target-dir="src/org/apache/cordova/splashscreen" />
+  </platform>
+</plugin>
