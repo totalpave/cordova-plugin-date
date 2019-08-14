@@ -1,0 +1,9 @@
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+dependencies {
+    implementation 'com.github.instacart.truetime-android:library:3.4'
+}

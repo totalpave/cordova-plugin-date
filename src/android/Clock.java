@@ -20,22 +20,43 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.LOG;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.IOException;
+
+import com.instacart.library.truetime.TrueTime;
+
 public class Clock extends CordovaPlugin {
     private static final String LOG_TAG = "TotalPaveClock";
+    private String serviceName = "Clock";
 
-    // @Override
-    // protected void pluginInitialize() {
-    // }
+    @Override
+    protected void pluginInitialize() {
+      cordova.getThreadPool().execute(new Runnable() {
+          public void run() {
+            try {
+              // int myInt = 0;
+              // if (false) {
+              //   throw new IOException();
+              // }
+              TrueTime.build().initialize();
+            } catch(IOException e) {
+              LOG.e(LOG_TAG, "Failed to initialize TrueTime.", e);
+            }
+          }
+      });
+    }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         // cordova.getActivity().runOnUiThread(new Runnable() {
 
-        if (action.equals("test")) {
-            callbackContext.success("android");
+        // Returns the number of milliseconds as a string since January 1, 1970, 00:00:00 GMT from right now.
+        if (action.equals("now")) {
+            // We could convert long to int; but, there's the question of possibly lossy conversion. So instead of thinking about that, why not just use string?
+            callbackContext.success(Long.toString(TrueTime.now().getTime()));
             return true;
         }
 

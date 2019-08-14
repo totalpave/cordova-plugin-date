@@ -19,8 +19,8 @@ var exec = require('cordova/exec');
 const CLASS_NAME = "Clock";
 
 var clock = {
-	test: function(success, fail) {
-		exec(success, fail, CLASS_NAME, "test");
+	now: function(success, fail) {
+		exec(success, fail, CLASS_NAME, "now");
 	}
 };
 
