@@ -20,6 +20,7 @@
     </config-file>
     <header-file src="src/ios/CDVClock.h" />
     <source-file src="src/ios/CDVClock.m" />
+    <framework src="TrueTime" type="podspec" spec="5.0.3" />
   </platform>
 
   <platform name="android">
