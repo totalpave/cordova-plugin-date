@@ -18,7 +18,7 @@
 #import <Cordova/CDVPlugin.h>
 #import <Cordova/CDVInvokedUrlCommand.h>
 
-@interface CDVSplashScreen : CDVPlugin {
+@interface CDVClock : CDVPlugin {
 }
 
 - (void)test:(CDVInvokedUrlCommand*)command;
