@@ -17,15 +17,19 @@
 
 #import "CDVClock.h"
 
+@import TrueTime;
+
 @implementation CDVClock
 
 - (void)pluginInitialize
 {
+  self->trueTimeClient = [TrueTimeClient sharedInstance];
+  [self->trueTimeClient startWithPool:@[@"time.apple.com"] port:123];
 }
 
-- (void)test:(CDVInvokedUrlCommand*)command
+- (void)now:(CDVInvokedUrlCommand*)command
 {
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ios"] callbackId: command.callbackId];
+  [self.commandDelegate sendPluginResult: [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: [[[self->trueTimeClient referenceTime] now] timeIntervalSince1970]] callbackId: command.callbackId];
 }
 
 @end

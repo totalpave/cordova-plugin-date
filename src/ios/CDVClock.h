@@ -18,9 +18,13 @@
 #import <Cordova/CDVPlugin.h>
 #import <Cordova/CDVInvokedUrlCommand.h>
 
+// Forward declaring TrueTime's swift class
+@class TrueTimeClient;
+
 @interface CDVClock : CDVPlugin {
+   TrueTimeClient* trueTimeClient;
 }
 
-- (void)test:(CDVInvokedUrlCommand*)command;
+- (void)now:(CDVInvokedUrlCommand*)command;
 
 @end
