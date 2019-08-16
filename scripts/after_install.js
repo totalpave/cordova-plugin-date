@@ -7,10 +7,14 @@ var xcode = require('xcode'),
 
 module.exports = function(context) {
 	//var cordova_util = context.requireCordovaModule("cordova-lib/src/cordova/util"),
-    var ConfigParser = context.requireCordovaModule('cordova-lib/src/configparser/ConfigParser'),
-      platforms = context.requireCordovaModule('cordova-lib/src/cordova/platforms'),
+    var ConfigParser = context.requireCordovaModule('cordova-common/src/ConfigParser/ConfigParser'),
+      platforms = context.requireCordovaModule('cordova-lib/src/platforms/platforms'),
       xml = cordova_util.projectConfig(projectRoot),
       cfg = new ConfigParser(xml);
+    console.log(context);
+    console.log(platforms);
+    console.log(xml);
+    console.log(cfg);
 	console.log(context.opts.plugin.pluginInfo);
 	console.log(context.opts.plugin.pluginInfo.getConfigFiles());
     // var projectPath = context.opts.projectRoot 'myproject.xcodeproj/project.pbxproj',
