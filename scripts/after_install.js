@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-var xcode = require('xcode'),
-    fs = require('fs'),
+// var xcode = require('xcode'),
+var fs = require('fs'),
     path = require("path"),
     plist = require('plist');
 
 module.exports = function(context) {
 	//var cordova_util = context.requireCordovaModule("cordova-lib/src/cordova/util"),
-    var ConfigParser = context.requireCordovaModule('cordova-lib/src/configparser/ConfigParser'),
+    var ConfigParser = context.requireCordovaModule('cordova-common/src/ConfigParser/ConfigParser'),
       platforms = context.requireCordovaModule('cordova-lib/src/cordova/platforms'),
       xml = cordova_util.projectConfig(projectRoot),
       cfg = new ConfigParser(xml);
