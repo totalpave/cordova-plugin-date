@@ -24,12 +24,15 @@
 - (void)pluginInitialize
 {
   self->trueTimeClient = [TrueTimeClient sharedInstance];
-  [self->trueTimeClient startWithPool:@[@"time.apple.com"] port:123];
+  [self->trueTimeClient start:@[@"time.apple.com"] port:123];
 }
 
 - (void)now:(CDVInvokedUrlCommand*)command
 {
-  [self.commandDelegate sendPluginResult: [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: [[[self->trueTimeClient referenceTime] now] timeIntervalSince1970]] callbackId: command.callbackId];
+  NSTimeInterval now = [[[self->trueTimeClient referenceTime] now] timeIntervalSince1970];
+  NSString* value = [[NSNumber numberWithDouble:now] stringValue];
+
+  [self.commandDelegate sendPluginResult: [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:value] callbackId: command.callbackId];
 }
 
 @end

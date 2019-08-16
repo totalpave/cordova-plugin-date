@@ -30,6 +30,7 @@ import com.instacart.library.truetime.TrueTime;
 
 public class Clock extends CordovaPlugin {
     private static final String LOG_TAG = "TotalPaveClock";
+    private static final String DEFAULT_NTP_HOST = "pool.ntp.org";
     private String serviceName = "Clock";
 
     @Override
@@ -42,6 +43,7 @@ public class Clock extends CordovaPlugin {
               //   throw new IOException();
               // }
               TrueTime.build().initialize();
+              TrueTime.withNtpHost(DEFAULT_NTP_HOST);
             } catch(IOException e) {
               LOG.e(LOG_TAG, "Failed to initialize TrueTime.", e);
             }
@@ -55,11 +57,11 @@ public class Clock extends CordovaPlugin {
 
         // Returns the number of milliseconds as a string since January 1, 1970, 00:00:00 GMT from right now.
         if (action.equals("now")) {
-            // We could convert long to int; but, there's the question of possibly lossy conversion. So instead of thinking about that, why not just use string?
-            callbackContext.success(Long.toString(TrueTime.now().getTime()));
-            return true;
+          // We could convert long to int; but, there's the question of possibly lossy conversion. So instead of thinking about that, why not just use string?
+          callbackContext.success(Long.toString(TrueTime.now().getTime()));
+          return true;
         }
-
+        
         return false;
     }
 }
