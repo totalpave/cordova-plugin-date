@@ -28,8 +28,8 @@
         <pod name="TrueTime" spec="5.0.3"/>
       </pods>
     </podspec>
-    <hook type="after_plugin_install" src="scripts/after_install.js" />
   </platform>
+  <hook type="after_plugin_install" src="scripts/after_install.js" />
 
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
