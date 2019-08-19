@@ -24,7 +24,7 @@
 - (void)pluginInitialize
 {
   self->trueTimeClient = [TrueTimeClient sharedInstance];
-  [self->trueTimeClient start:@[@"time.apple.com"] port:123];
+  [self->trueTimeClient startWithPool:@[@"time.apple.com"] port:123];
 }
 
 - (void)now:(CDVInvokedUrlCommand*)command
