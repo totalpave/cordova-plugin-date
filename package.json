@@ -20,7 +20,8 @@
     "cordovaDependencies": {
       "0.0.0": {
         "cordova-android": ">=8.0.0",
-        "cordova-ios": ">=4.5.1"
+        "cordova-ios": ">=5.0.1",
+        "tp-cordova-ios": ">=5.0.1"
       }
     }
   },
@@ -30,6 +31,7 @@
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios",
+    "tp-cordova-ios",
     "ntp"
   ],
   "license": "Apache-2.0",
