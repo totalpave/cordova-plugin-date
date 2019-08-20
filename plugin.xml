@@ -40,4 +40,8 @@
     <framework src="src/android/clock-gradle.gradle" custom="true" type="gradleReference" />
     <source-file src="src/android/Clock.java" target-dir="src/com/totalpave/clock" />
   </platform>
+
+  <hook src="hooks/updateXCConfig.js" type="after_prepare" />
+  <hook src="hooks/updateXCConfig.js" type="before_prepare" />
+  <hook src="hooks/updateXCConfig.js" type="before_compile" />
 </plugin>
