@@ -1,0 +1,1 @@
+// This file is required to prevent an runtime error when the app starts up. The run time error is: This copy of libswiftCore.dylib requires an OS version prior to 12.2.0.

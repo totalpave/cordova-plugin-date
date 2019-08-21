@@ -781,6 +781,12 @@ var applyCustomConfig = (function(){
             value: "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
             buildType: 'none',
             xcconfigEnforce: "true"
+        },
+        {
+            name: "SWIFT_VERSION",
+            value: "5.0",
+            buildType: 'none',
+            xcconfigEnforce: "true"
         }
         ], platformPath);
 

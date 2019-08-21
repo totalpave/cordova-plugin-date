@@ -20,8 +20,7 @@
     "cordovaDependencies": {
       "0.0.0": {
         "cordova-android": ">=8.0.0",
-        "cordova-ios": ">=5.0.1",
-        "tp-cordova-ios": ">=5.0.1"
+        "cordova-ios": ">=5.0.1"
       }
     }
   },
