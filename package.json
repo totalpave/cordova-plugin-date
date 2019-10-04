@@ -34,7 +34,7 @@
     "ntp"
   ],
   "license": "Apache-2.0",
-  "name": "cordova-plugin-date",
+  "name": "@totalpave/cordova-plugin-date",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/totalpave/cordova-plugin-date.git"
