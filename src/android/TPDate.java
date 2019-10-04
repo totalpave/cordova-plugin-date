@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-package com.totalpave.clock;
+package com.totalpave.tpdate;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -28,18 +28,18 @@ import java.io.IOException;
 
 import com.instacart.library.truetime.TrueTime;
 
-public class Clock extends CordovaPlugin {
-    private static final String LOG_TAG = "TotalPaveClock";
+public class TPDate extends CordovaPlugin {
+    private static final String LOG_TAG = "TotalPaveTPDate";
     // I don't know the full details behind the "why"; but, I don't think TrueTime works with hosts that don't suppirt ipv6.
     // This holds true even if we only use ipv4.
     // time.apple.com (originally used in the iOS code) doesn't support ipv6. TrueTime wouldn't initiate properly.
     // time.google.com supports both v4 and v6. TrueTime initiates properly.
     private static final String DEFAULT_NTP_HOST = "time.google.com";
-    private String serviceName = "Clock";
+    private String serviceName = "TPDate";
 
     @Override
     protected void pluginInitialize() {
-      Clock self = this;
+      TPDate self = this;
       cordova.getThreadPool().execute(new Runnable() {
           public void run() {
             self.reinit();

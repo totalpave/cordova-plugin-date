@@ -1,14 +1,14 @@
 {
   "author": "Total Pave Inc.",
   "bugs": {
-    "url": "https://github.com/totalpave/cordova-plugin-clock/issues"
+    "url": "https://github.com/totalpave/cordova-plugin-date/issues"
   },
   "contributors": [
     "Tyler Breau <tyler.breau@totalpave.com>",
     "Norman Breau <norman.breau@totalpave.com>"
   ],
   "cordova": {
-    "id": "cordova-plugin-clock",
+    "id": "cordova-plugin-date",
     "platforms": [
       "android",
       "ios"
@@ -24,7 +24,7 @@
       }
     }
   },
-  "homepage": "https://github.com/totalpave/cordova-plugin-clock",
+  "homepage": "https://github.com/totalpave/cordova-plugin-date",
   "keywords": [
     "cordova",
     "ecosystem:cordova",
@@ -34,10 +34,10 @@
     "ntp"
   ],
   "license": "Apache-2.0",
-  "name": "cordova-plugin-clock",
+  "name": "cordova-plugin-date",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/totalpave/cordova-plugin-clock.git"
+    "url": "git+https://github.com/totalpave/cordova-plugin-date.git"
   },
   "scripts": {
     "test": "not implemented yet"

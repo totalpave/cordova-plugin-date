@@ -1,4 +1,4 @@
-# cordova-plugin-clock
+# cordova-plugin-date
 Cordova plugin to interface with the Android and iOS TrueTime libraries. 
 
 iOS: https://github.com/instacart/TrueTime.swift

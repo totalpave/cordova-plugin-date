@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-clock" version="0.0.0">
-  <name>Clock</name>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-date" version="0.0.0">
+  <name>Date</name>
   <description>Cordova plugin to interface with TrueTime's Android and iOS NTP libaries.</description>
   <author>Total Pave Inc.</author>
   <license>Apache 2.0</license>
   <keywords>cordova,cordova-ios,cordova-android,ntp</keywords>
-  <repo>https://github.com/totalpave/cordova-plugin-clock</repo>
+  <repo>https://github.com/totalpave/cordova-plugin-date</repo>
 
-  <js-module src="www/clock.js" name="Clock">
-    <clobbers target="totalpave.clock" />
+  <js-module src="www/date.js" name="Date">
+    <clobbers target="totalpave.date" />
   </js-module>
 
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
-      <feature name="Clock">
-        <param name="ios-package" value="CDVClock"/>
+      <feature name="Date">
+        <param name="ios-package" value="CDVDate"/>
         <param name="onload" value="true"/>
       </feature>
     </config-file>
-    <header-file src="src/ios/CDVClock.h" />
-    <source-file src="src/ios/CDVClock.m" />
-    <source-file src="src/ios/ClockSwiftHack.swift" />
+    <header-file src="src/ios/CDVDate.h" />
+    <source-file src="src/ios/CDVDate.m" />
+    <source-file src="src/ios/DateSwiftHack.swift" />
     <podspec>
       <config>
         <source url="https://github.com/CocoaPods/Specs.git"/>
@@ -33,13 +33,13 @@
   
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="Clock">
-        <param name="android-package" value="com.totalpave.clock.Clock"/>
+      <feature name="TPDate">
+        <param name="android-package" value="com.totalpave.date.TPDate"/>
         <param name="onload" value="true"/>
       </feature>
     </config-file>
-    <framework src="src/android/clock-gradle.gradle" custom="true" type="gradleReference" />
-    <source-file src="src/android/Clock.java" target-dir="src/com/totalpave/clock" />
+    <framework src="src/android/tpdate-gradle.gradle" custom="true" type="gradleReference" />
+    <source-file src="src/android/TPDate.java" target-dir="src/com/totalpave/date" />
   </platform>
 
   <hook src="hooks/updateXCConfig.js" type="after_prepare" />
