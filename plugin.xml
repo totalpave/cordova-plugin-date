@@ -29,6 +29,7 @@
         <pod name="TrueTime" spec="5.0.3"/>
       </pods>
     </podspec>
+    <framework src="TrueTime" type="podspec" spec="5.0.3" />
   </platform>
   
   <platform name="android">
