@@ -8,7 +8,7 @@
     "Norman Breau <norman.breau@totalpave.com>"
   ],
   "cordova": {
-    "id": "cordova-plugin-date",
+    "id": "totalpave-cordova-plugin-date",
     "platforms": [
       "android",
       "ios"
