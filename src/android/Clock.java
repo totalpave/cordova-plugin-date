@@ -30,25 +30,39 @@ import com.instacart.library.truetime.TrueTime;
 
 public class Clock extends CordovaPlugin {
     private static final String LOG_TAG = "TotalPaveClock";
-    private static final String DEFAULT_NTP_HOST = "pool.ntp.org";
+    // I don't know the full details behind the "why"; but, I don't think TrueTime works with hosts that don't suppirt ipv6.
+    // This holds true even if we only use ipv4.
+    // time.apple.com (originally used in the iOS code) doesn't support ipv6. TrueTime wouldn't initiate properly.
+    // time.google.com supports both v4 and v6. TrueTime initiates properly.
+    private static final String DEFAULT_NTP_HOST = "time.google.com";
     private String serviceName = "Clock";
 
     @Override
     protected void pluginInitialize() {
+      Clock self = this;
       cordova.getThreadPool().execute(new Runnable() {
           public void run() {
-            try {
-              // int myInt = 0;
-              // if (false) {
-              //   throw new IOException();
-              // }
-              TrueTime.build().initialize();
-              TrueTime.withNtpHost(DEFAULT_NTP_HOST);
-            } catch(IOException e) {
-              LOG.e(LOG_TAG, "Failed to initialize TrueTime.", e);
-            }
+            self.reinit();
           }
       });
+    }
+
+    private void reinit() {
+      if (!TrueTime.isInitialized()) {
+        try {
+          // int myInt = 0;
+          // if (false) {
+          //   throw new IOException();
+          // }
+          // See full example at https://github.com/instacart/truetime-android/blob/master/app/src/main/java/com/instacart/library/sample/App.java
+          TrueTime.build()
+            .withNtpHost(DEFAULT_NTP_HOST)
+            .withSharedPreferencesCache(cordova.getActivity().getApplication())
+            .initialize();
+        } catch(IOException e) {
+          LOG.e(LOG_TAG, "Failed to initialize TrueTime.", e);
+        }
+      }
     }
 
     @Override
@@ -59,6 +73,10 @@ public class Clock extends CordovaPlugin {
         if (action.equals("now")) {
           // We could convert long to int; but, there's the question of possibly lossy conversion. So instead of thinking about that, why not just use string?
           callbackContext.success(Long.toString(TrueTime.now().getTime()));
+          return true;
+        } else if (action.equals("reinit")) {
+          reinit();
+          callbackContext.success();
           return true;
         }
         

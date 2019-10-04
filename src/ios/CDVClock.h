@@ -26,5 +26,7 @@
 }
 
 - (void)now:(CDVInvokedUrlCommand*)command;
+- (void)init;
+- (void)reinit:(CDVInvokedUrlCommand*)command;
 
 @end

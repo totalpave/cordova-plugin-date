@@ -814,6 +814,8 @@ var applyCustomConfig = (function(){
 
 // Main
 module.exports = function(ctx) {
+    if (!ctx.opts.cordova.platforms.includes('ios')) return;
+    
     try{
         deferral = require('q').defer();
         path = require('path');

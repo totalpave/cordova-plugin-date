@@ -23,16 +23,38 @@
 
 - (void)pluginInitialize
 {
+  [self init];
+}
+
+- (void)init
+{
   self->trueTimeClient = [TrueTimeClient sharedInstance];
-  [self->trueTimeClient startWithPool:@[@"time.apple.com"] port:123];
+  // I don't know the full details behind the "why"; but, I don't think TrueTime works with hosts that don't support ipv6.
+  // This holds true even if we only use ipv4.
+  // time.apple.com doesn't support ipv6. TrueTime wouldn't initiate properly.
+  // time.google.com supports both v4 and v6. TrueTime initiates properly.
+  // port was originally for time.apple.com; but, appears to work with google anyways. 
+  [self->trueTimeClient startWithPool:@[@"time.google.com"] port:123];
+}
+
+- (void)reinit:(CDVInvokedUrlCommand*)command 
+{
+  [self init];
 }
 
 - (void)now:(CDVInvokedUrlCommand*)command
 {
   NSTimeInterval now = [[[self->trueTimeClient referenceTime] now] timeIntervalSince1970];
-  NSString* value = [[NSNumber numberWithDouble:now] stringValue];
+  NSString* value = [[NSNumber numberWithDouble:(now * 1000)] stringValue];
 
-  [self.commandDelegate sendPluginResult: [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:value] callbackId: command.callbackId];
+  // On a fresh install of an app using this plugin, opening the app without internet. The app was receiving "0" milliseconds for the date. 
+  // We are updating the plugin to take this result and mimick how the Android side reacts to this scenario. Android threw exception.
+  // The error message we are using was copied and pasted from TrueTime's Android library.
+  if([value isEqualToString:@"0"]) {
+    [self.commandDelegate sendPluginResult: [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"You need to call init() on TrueTime at least once."] callbackId: command.callbackId];
+  } else {
+    [self.commandDelegate sendPluginResult: [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:value] callbackId: command.callbackId];
+  }
 }
 
 @end
