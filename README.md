@@ -17,6 +17,8 @@ Instead you would use `getTime`, `now`, and `getDate`.
 Setups the JavaScript side of the plugin to be used. 
 The native side of the plugin should be handled automatically; but, if for some reason something goes wrong, see `reinit`.
 
+This function also sets up an event listener for resume. When the resume event fires, the plugin will automatically attempt to sync the time. 
+
 ### Parameters
 success, fail - cordova callbacks.
 
