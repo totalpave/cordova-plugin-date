@@ -27,7 +27,7 @@
     <!-- pod tag is a cordova-plugin-cocoapod-support thing -->
     <pod name="TrueTime" version="5.0.3" />
     <!--
-    Because cordova support of cocoapods only exists to, putting it nicely, torment developers I found alternative solutions.
+    Due to some troubles with podspec/framework tags, trying cordova-plugin-cocoapod-support for cocoapod dependencies.
     <podspec>
       <config>
         <source url="https://github.com/CocoaPods/Specs.git"/>
