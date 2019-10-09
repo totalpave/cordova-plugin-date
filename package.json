@@ -47,6 +47,7 @@
     "test": "tests"
   },
   "dependencies": {
+    "cordova-plugin-cocoapod-support": "1.6.2",
     "cordova-common": "^3.2.0",
     "cordova-js": "^5.0.0",
     "cordova-lib": "^9.0.1",

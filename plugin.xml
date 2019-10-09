@@ -12,6 +12,8 @@
   </js-module>
 
   <platform name="ios">
+    <dependency id="cordova-plugin-cocoapod-support" version="1.6.2" />
+
     <config-file target="config.xml" parent="/*">
       <feature name="Date">
         <param name="ios-package" value="CDVDate"/>
@@ -21,6 +23,11 @@
     <header-file src="src/ios/CDVDate.h" />
     <source-file src="src/ios/CDVDate.m" />
     <source-file src="src/ios/DateSwiftHack.swift" />
+
+    <!-- pod tag is a cordova-plugin-cocoapod-support thing -->
+    <pod name="TrueTime" version="5.0.3" />
+    <!--
+    Because cordova support of cocoapods only exists to, putting it nicely, torment developers I found alternative solutions.
     <podspec>
       <config>
         <source url="https://github.com/CocoaPods/Specs.git"/>
@@ -30,6 +37,7 @@
       </pods>
     </podspec>
     <framework src="TrueTime" type="podspec" spec="~> 5.0.3" />
+     -->
   </platform>
   
   <platform name="android">
