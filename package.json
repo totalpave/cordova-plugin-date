@@ -1,4 +1,6 @@
 {
+  "name": "@totalpave/cordova-plugin-date",
+  "version": "0.0.3-dev",
   "author": "Total Pave Inc.",
   "bugs": {
     "url": "https://github.com/totalpave/cordova-plugin-date/issues"
@@ -34,19 +36,18 @@
     "ntp"
   ],
   "license": "Apache-2.0",
-  "name": "@totalpave/cordova-plugin-date",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/totalpave/cordova-plugin-date.git"
   },
   "scripts": {
-    "test": "not implemented yet"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.1",
   "directories": {
     "test": "tests"
   },
   "dependencies": {
+    "cordova-plugin-cocoapod-support": "1.6.2",
     "cordova-common": "^3.2.0",
     "cordova-js": "^5.0.0",
     "cordova-lib": "^9.0.1",

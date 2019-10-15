@@ -12,6 +12,8 @@
   </js-module>
 
   <platform name="ios">
+    <dependency id="cordova-plugin-cocoapod-support" version="1.6.2" />
+
     <config-file target="config.xml" parent="/*">
       <feature name="TPDate">
         <param name="ios-package" value="CDVTPDate"/>
@@ -21,6 +23,11 @@
     <header-file src="src/ios/CDVTPDate.h" />
     <source-file src="src/ios/CDVTPDate.m" />
     <source-file src="src/ios/DateSwiftHack.swift" />
+
+    <!-- pod tag is a cordova-plugin-cocoapod-support thing -->
+    <pod name="TrueTime" version="5.0.3" />
+    <!--
+    Due to some troubles with podspec/framework tags, trying cordova-plugin-cocoapod-support for cocoapod dependencies.
     <podspec>
       <config>
         <source url="https://github.com/CocoaPods/Specs.git"/>
@@ -30,6 +37,7 @@
       </pods>
     </podspec>
     <framework src="TrueTime" type="podspec" spec="~> 5.0.3" />
+     -->
   </platform>
   
   <platform name="android">
