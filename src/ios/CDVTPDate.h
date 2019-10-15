@@ -21,7 +21,7 @@
 // Forward declaring TrueTime's swift class
 @class TrueTimeClient;
 
-@interface CDVDate : CDVPlugin {
+@interface CDVTPDate : CDVPlugin {
    TrueTimeClient* trueTimeClient;
 }
 

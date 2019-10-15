@@ -18,7 +18,7 @@ var exec = require('cordova/exec'),
    channel = require('cordova/channel'),
    utils = require('cordova/utils');
 
-const CLASS_NAME = "Date";
+const CLASS_NAME = "TPDate";
 
 // Tell cordova channel to wait on the CordovaDateReady event
 // channel.waitForInitialization('onCordovaDateReady');

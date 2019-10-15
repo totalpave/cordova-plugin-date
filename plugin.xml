@@ -13,13 +13,13 @@
 
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
-      <feature name="Date">
-        <param name="ios-package" value="CDVDate"/>
+      <feature name="TPDate">
+        <param name="ios-package" value="CDVTPDate"/>
         <param name="onload" value="true"/>
       </feature>
     </config-file>
-    <header-file src="src/ios/CDVDate.h" />
-    <source-file src="src/ios/CDVDate.m" />
+    <header-file src="src/ios/CDVTPDate.h" />
+    <source-file src="src/ios/CDVTPDate.m" />
     <source-file src="src/ios/DateSwiftHack.swift" />
     <podspec>
       <config>
