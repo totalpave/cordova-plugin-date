@@ -19,7 +19,7 @@
 
 @import TrueTime;
 
-@implementation CDTPDate
+@implementation CDVTPDate
 
 - (void)pluginInitialize
 {
