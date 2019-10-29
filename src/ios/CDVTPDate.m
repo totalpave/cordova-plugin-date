@@ -15,11 +15,11 @@
 */
 
 
-#import "CDVDate.h"
+#import "CDVTPDate.h"
 
 @import TrueTime;
 
-@implementation CDVDate
+@implementation CDVTPDate
 
 - (void)pluginInitialize
 {

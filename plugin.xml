@@ -15,13 +15,13 @@
     <dependency id="cordova-plugin-cocoapod-support" version="1.6.2" />
 
     <config-file target="config.xml" parent="/*">
-      <feature name="Date">
-        <param name="ios-package" value="CDVDate"/>
+      <feature name="TPDate">
+        <param name="ios-package" value="CDVTPDate"/>
         <param name="onload" value="true"/>
       </feature>
     </config-file>
-    <header-file src="src/ios/CDVDate.h" />
-    <source-file src="src/ios/CDVDate.m" />
+    <header-file src="src/ios/CDVTPDate.h" />
+    <source-file src="src/ios/CDVTPDate.m" />
     <source-file src="src/ios/DateSwiftHack.swift" />
 
     <!-- pod tag is a cordova-plugin-cocoapod-support thing -->
@@ -43,7 +43,7 @@
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="TPDate">
-        <param name="android-package" value="com.totalpave.date.TPDate"/>
+        <param name="android-package" value="com.totalpave.tpdate.TPDate"/>
         <param name="onload" value="true"/>
       </feature>
     </config-file>
