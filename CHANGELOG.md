@@ -1,4 +1,4 @@
-# Unreleased
+# 0.0.3 (October 29, 2019)
 - Renamed ios class from CDVDate to TPDate. 
 - Updated javascript to use TPDate instead of Date as the CLASS_NAME.
 - Fixed typo in Android package name.
