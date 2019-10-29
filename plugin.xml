@@ -43,7 +43,7 @@
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="TPDate">
-        <param name="android-package" value="com.totalpave.date.TPDate"/>
+        <param name="android-package" value="com.totalpave.tpdate.TPDate"/>
         <param name="onload" value="true"/>
       </feature>
     </config-file>
