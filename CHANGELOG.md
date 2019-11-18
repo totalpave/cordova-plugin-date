@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.5-dev
+- TBD
+
 ## 0.0.4 (November 18, 2019)
 - [#9](https://github.com/totalpave/cordova-plugin-date/pull/9) - (Android) Downgraded TrueTime to `3.2`
 
