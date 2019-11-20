@@ -41,7 +41,6 @@ var date = {
    _logger: console,
    _difference: null,
    ERRORS: ERRORS,
-   _updateErrorInterval: null,
    _updateInterval: null,
    _initErrorInterval: null,
    _hasCalledInit: false,
