@@ -57,7 +57,8 @@ public class TPDate extends CordovaPlugin {
           // See full example at https://github.com/instacart/truetime-android/blob/master/app/src/main/java/com/instacart/library/sample/App.java
           TrueTime.build()
             .withNtpHost(DEFAULT_NTP_HOST)
-            .withSharedPreferencesCache(cordova.getActivity().getApplication())
+            // .withSharedPreferences(cordova.getActivity().getApplication()) //3.2
+            // .withSharedPreferencesCache(cordova.getActivity().getApplication()) //3.4
             .initialize();
         } catch(IOException e) {
           LOG.e(LOG_TAG, "Failed to initialize TrueTime.", e);
