@@ -32,13 +32,6 @@ const ERRORS = {
    "TRUE_TIME_VALUE_NOT_READY": 0
 };
 
-const NATIVE_ERRORS = {
-   NOT_INITIALIZED: "You need to call init() on TrueTime at least once."
-}
-
-// Time sync delay when the update errored out. Used when we suspect that the difference could be inaccurate and the update failed.
-const TIME_SYNC_ERROR_DELAY = 60000; //1 minute
-
 // Time delay to attempt to re-initialize. 
 const INIT_ERROR_INTERVAL_DELAY = 10000; //10 seconds
 
@@ -54,29 +47,21 @@ var date = {
    _hasCalledInit: false,
    _messageToCode: function(error) {
       switch(error) {
-         case NATIVE_ERRORS.ERR_NOT_INITIALIZED:
+         case "You need to call init() on TrueTime at least once.":
             return ERRORS.TRUE_TIME_VALUE_NOT_READY;
          default: 
             return error;
-      }
-   },
-   _startUpdateErrorInterval: function() { 
-      if(!date._updateErrorInterval) {
-         date._updateErrorInterval = window.setInterval(() => {
-            date.update(() => {
-               window.clearInterval(date._updateErrorInterval);
-               date._updateErrorInterval = null;
-            }, date._logger.log);
-         }, TIME_SYNC_ERROR_DELAY);
       }
    },
    _startInitErrorInterval: function() {
       if (!date._initErrorInterval) {
          date._initErrorInterval = window.setInterval(() => {
             new Promise((resolve, reject) => {
-               date._reinit(() => {
+               date._reinit(resolve, reject);
+            }).then(() => {
+               return new Promise((resolve, reject) => {
                   date.update(resolve, reject);
-               }, reject);
+               });
             }).then(() => {
                window.clearInterval(date._initErrorInterval);
                date._initErrorInterval = null;
@@ -119,27 +104,14 @@ var date = {
       document.addEventListener("resume", () => {
          date.update(null, (error) => {
             date._logger.log(error);
-            if (error === NATIVE_ERRORS.NOT_INITIALIZED) {
-               date._startInitErrorInterval();
-            } else {
-               // We failed to get new truetime value during init. The time could have changed since the last time the app was opened.
-               // We'll work with what we have; but, we really want a fresh real time value now.
-               date._startUpdateErrorInterval();
-            }
+            date._startInitErrorInterval();
          });
       });
       date._updateInterval = window.setInterval(() => {
          date.update(null, date._logger.log);
       }, timeSyncDelay); 
       date.update(success, (error) => {
-         if (error === NATIVE_ERRORS.NOT_INITIALIZED) {
-            date._startInitErrorInterval();
-         } else {
-            // We failed to get new truetime value during init. The time could have changed since the last time the app was opened.
-            // We'll work with what we have; but, we really want a fresh real time value now.
-            date._startUpdateErrorInterval();
-         }
-
+         date._startInitErrorInterval();
          date._logger.log('[ERROR] Error initializing Cordova: ' + error);
          fail && fail(error);
       });
