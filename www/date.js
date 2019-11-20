@@ -18,6 +18,11 @@ var exec = require('cordova/exec'),
    channel = require('cordova/channel'),
    utils = require('cordova/utils');
 
+const PLATFORMS = {
+   IOS: "ios",
+   ANDROID: "Android"
+}
+
 const CLASS_NAME = "TPDate";
 
 // Tell cordova channel to wait on the CordovaDateReady event
@@ -27,8 +32,8 @@ const ERRORS = {
    "TRUE_TIME_VALUE_NOT_READY": 0
 };
 
-// Time sync delay when the update errored out. Used when we suspect that the difference could be inaccurate and the update failed.
-const TIME_SYNC_ERROR_DELAY = 60000; //1 minute
+// Time delay to attempt to re-initialize. 
+const INIT_ERROR_INTERVAL_DELAY = 10000; //10 seconds
 
 var date = {
    // The different in millisecond between JS time and native time. There will be a marginal error due to time spent on the Cordova Bridge and JS between running new Date() and setting _difference.
@@ -36,8 +41,8 @@ var date = {
    _logger: console,
    _difference: null,
    ERRORS: ERRORS,
-   _updateErrorInterval: null,
    _updateInterval: null,
+   _initErrorInterval: null,
    _hasCalledInit: false,
    _messageToCode: function(error) {
       switch(error) {
@@ -47,18 +52,41 @@ var date = {
             return error;
       }
    },
-   _startUpdateErrorInterval: function() { 
-      if(!date._updateErrorInterval) {
-         date._updateErrorInterval = window.setInterval(() => {
-            date.update(() => {
-               window.clearInterval(date._updateErrorInterval);
-               date._updateErrorInterval = null;
-            }, date._logger.log);
-         }, TIME_SYNC_ERROR_DELAY);
+   _startInitErrorInterval: function() {
+      if (!date._initErrorInterval) {
+         // We're using recursive function that setups timeouts so that we can 
+         // avoid having the asynchronous code pile up with an interval.
+         // The timeout is still setup like an interval as it will keep on re-doing the timeout until
+         // The asynchronous code comes back successful.
+         date._initErrorInterval = window.setTimeout(() => {
+            new Promise((resolve, reject) => {
+               date._reinit(resolve, reject);
+            }).then(() => {
+               return new Promise((resolve, reject) => {
+                  date.update(resolve, reject);
+               });
+            }).then(() => {
+               date._initErrorInterval = null;
+            }).catch((error) => {
+               date._logger.log(error);
+               this._startInitErrorInterval();
+            });
+         }, INIT_ERROR_INTERVAL_DELAY);
       }
    },
-   reinit: function(success, fail) {
-      exec(success, fail, CLASS_NAME, "reinit");
+   _reinit: function(success, fail) {
+      // So iOS can't really run reinit. 
+      // iOS TrueTime seems to always initialize properly, even if there is no internet. When there is internet, update will simply work.
+      // If you tried to reinit it would actually cause an exception. So the native code was updated to not doing anything on reinit.
+      // Since the native code doesn't do anything on reinit, let's just not go over the cordova bridge.  
+      if (cordova.platformId === PLATFORMS.IOS) {
+         // Keep the function flow asynchronous with this timeout.
+         window.setTimeout(() => {
+            success();
+         });
+      } else {
+         exec(success, fail, CLASS_NAME, "reinit");
+      }
    },
    // success/fail are required callbacks. 
    // logger is an optional parameter to change the logger the plugin will use. logger, if provided, must have the "log" function"
@@ -81,18 +109,14 @@ var date = {
       document.addEventListener("resume", () => {
          date.update(null, (error) => {
             date._logger.log(error);
-            // We failed to get new truetime value after a resume event. The time could have changed. 
-            // We'll work with what we have; but, we really want a fresh real time value now.
-            date._startUpdateErrorInterval();
+            date._startInitErrorInterval();
          });
       });
       date._updateInterval = window.setInterval(() => {
          date.update(null, date._logger.log);
       }, timeSyncDelay); 
       date.update(success, (error) => {
-         // We failed to get new truetime value during init. The time could have changed since the last time the app was opened.
-         // We'll work with what we have; but, we really want a fresh real time value now.
-         date._startUpdateErrorInterval();
+         date._startInitErrorInterval();
          date._logger.log('[ERROR] Error initializing Cordova: ' + error);
          fail && fail(error);
       });
