@@ -1,6 +1,6 @@
 {
   "name": "@totalpave/cordova-plugin-date",
-  "version": "0.0.4-dev",
+  "version": "0.0.5-dev",
   "author": "Total Pave Inc.",
   "bugs": {
     "url": "https://github.com/totalpave/cordova-plugin-date/issues"

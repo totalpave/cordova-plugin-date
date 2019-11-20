@@ -39,7 +39,10 @@
 
 - (void)reinit:(CDVInvokedUrlCommand*)command 
 {
-  [self init];
+  // It seems iOS will still be properly initialized even if there is no internet.
+  // It just won't have an truetime value. Calling update (known as "now" in native) will get the truetime value
+  // [self init];
+  [self.commandDelegate sendPluginResult: [CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId: command.callbackId];
 }
 
 - (void)now:(CDVInvokedUrlCommand*)command
