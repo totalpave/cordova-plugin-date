@@ -54,7 +54,11 @@ var date = {
    },
    _startInitErrorInterval: function() {
       if (!date._initErrorInterval) {
-         date._initErrorInterval = window.setInterval(() => {
+         // We're using recursive function that setups timeouts so that we can 
+         // avoid having the asynchronous code pile up with an interval.
+         // The timeout is still setup like an interval as it will keep on re-doing the timeout until
+         // The asynchronous code comes back successful.
+         date._initErrorInterval = window.setTimeout(() => {
             new Promise((resolve, reject) => {
                date._reinit(resolve, reject);
             }).then(() => {
@@ -62,9 +66,11 @@ var date = {
                   date.update(resolve, reject);
                });
             }).then(() => {
-               window.clearInterval(date._initErrorInterval);
                date._initErrorInterval = null;
-            }).catch(date._logger.log);
+            }).catch((error) => {
+               date._logger.log(error);
+               this._startInitErrorInterval();
+            });
          }, INIT_ERROR_INTERVAL_DELAY);
       }
    },
