@@ -85,7 +85,12 @@ var date = {
       }
    },
    reinit: function(success, fail) {
+      // So iOS can't really run reinit. 
+      // iOS TrueTime seems to always initialize properly, even if there is no internet. When there is internet, update will simply work.
+      // If you tried to reinit it would actually cause an exception. So the native code was updated to not doing anything on reinit.
+      // Since the native code doesn't do anything on reinit, let's just not go over the cordova bridge.  
       if (cordova.platformId === PLATFORMS.IOS) {
+         // Keep the function flow asynchronous with this timeout.
          window.setTimeout(() => {
             success();
          });
