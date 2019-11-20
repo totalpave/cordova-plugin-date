@@ -1,7 +1,7 @@
 # Changelog
 
 ## 0.0.5-dev
-- TBD
+- [#12](https://github.com/totalpave/cordova-plugin-date/pull/12) - (Android) Upgraded TrueTime back to `3.4`. Omit `withSharedPreferences` configuration.
 
 ## 0.0.4 (November 18, 2019)
 - [#9](https://github.com/totalpave/cordova-plugin-date/pull/9) - (Android) Downgraded TrueTime to `3.2`
