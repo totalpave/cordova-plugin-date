@@ -74,7 +74,7 @@ var date = {
       if (!date._initErrorInterval) {
          date._initErrorInterval = window.setInterval(() => {
             new Promise((resolve, reject) => {
-               date.reinit(() => {
+               date._reinit(() => {
                   date.update(resolve, reject);
                }, reject);
             }).then(() => {
@@ -84,7 +84,7 @@ var date = {
          }, INIT_ERROR_INTERVAL_DELAY);
       }
    },
-   reinit: function(success, fail) {
+   _reinit: function(success, fail) {
       // So iOS can't really run reinit. 
       // iOS TrueTime seems to always initialize properly, even if there is no internet. When there is internet, update will simply work.
       // If you tried to reinit it would actually cause an exception. So the native code was updated to not doing anything on reinit.
