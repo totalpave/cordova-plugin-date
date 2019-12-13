@@ -1,7 +1,7 @@
 # Changelog
 
 ## 0.0.6
-- Removed `npm` as a dependency 
+- [#16](https://github.com/totalpave/cordova-plugin-date/pull/16) - Removed `npm` as a dependency 
 
 ## 0.0.5
 - [#12](https://github.com/totalpave/cordova-plugin-date/pull/12) - (Android) Upgraded TrueTime back to `3.4`. Omit `withSharedPreferences` configuration.
