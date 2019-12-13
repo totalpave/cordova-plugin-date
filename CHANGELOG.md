@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.0.6-dev
+## 0.0.6
 - Removed `npm` as a dependency 
 
 ## 0.0.5
