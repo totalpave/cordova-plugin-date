@@ -1,6 +1,6 @@
 {
   "name": "@totalpave/cordova-plugin-date",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Total Pave Inc.",
   "bugs": {
     "url": "https://github.com/totalpave/cordova-plugin-date/issues"
@@ -23,6 +23,10 @@
       "0.0.0": {
         "cordova-android": ">=8.0.0",
         "cordova-ios": ">=5.0.1"
+      },
+      "2.0.0": {
+        "cordova-android": ">=8.0.0",
+        "cordova-ios": ">=6.2.0"
       }
     }
   },
@@ -47,11 +51,10 @@
     "test": "tests"
   },
   "dependencies": {
-    "cordova-plugin-cocoapod-support": "1.6.2",
     "elementtree": "^0.1.7",
     "install": "^0.13.0",
     "lodash": "4.17.21",
-    "plist": "3.0.4",
+    "plist": "3.0.5",
     "q": "^1.5.1",
     "tostr": "^0.1.0",
     "xcode": "3.0.1"
